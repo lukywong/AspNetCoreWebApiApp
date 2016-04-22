@@ -1,0 +1,9 @@
+postgres:
+  container_name: MyWebApiApp
+  image: postgres:9.4.5
+  ports:
+    - 5433:5432
+  environment:
+    POSTGRES_DB: oms
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: 123123
