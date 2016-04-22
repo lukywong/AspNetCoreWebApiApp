@@ -1,5 +1,5 @@
 # My Web Api App
-A cross-platform demo of asp.net web api based on mono runtime.
+A cross-platform demo of asp.net core web api based on mono runtime.
 
 ## How to build
 Install the .NET Version Manager (DNVM)
