@@ -12,7 +12,7 @@ namespace MyWebApiApp.Services
         {
             using (var db = new DatabaseContext())
             {
-                return db.Products.Where(d => d.Id > 4).ToList();
+                return db.Products.Where(d => d.Id < 4).ToList();
             }
         }
     }
