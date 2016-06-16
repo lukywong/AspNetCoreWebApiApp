@@ -1,4 +1,4 @@
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 using MyWebApiApp.Models;
 
@@ -6,11 +6,10 @@ namespace MyWebApiApp.Domains
 {
     public class DatabaseContext : DbContext
     {
+        public DatabaseContext() {}
+        public DatabaseContext(DbContextOptions<DatabaseContext> options)
+          : base(options)
+        { }
         public DbSet<Product> Products { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=pg-host;Port=5433;Username=postgres;Password=123123;Database=oms");
-        }
     }
 }

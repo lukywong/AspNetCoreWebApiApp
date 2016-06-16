@@ -1,7 +1,8 @@
 using System;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Migrations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+
 using MyWebApiApp.Domains;
 
 namespace MyWebApiApp.Migrations
@@ -13,9 +14,9 @@ namespace MyWebApiApp.Migrations
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348");
+                .HasAnnotation("ProductVersion", "1.0.0-rc2-20896");
 
-            modelBuilder.Entity("MyWebApiApp.Models.Product", b =>
+            modelBuilder.Entity("AspNetCoreWepApi.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -29,6 +30,8 @@ namespace MyWebApiApp.Migrations
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
+
+                    b.ToTable("Product");
                 });
         }
     }

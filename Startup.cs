@@ -1,45 +1,47 @@
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
+using MyWebApiApp.Domains;
+using MyWebApiApp.Services;
 
 namespace MyWebApiApp
 {
     public class Startup
     {
+      public const string CONNECTION_STRING = "Data:DefaultConnectionString";
+
+        public IConfigurationRoot Configuration { get; private set; }
+
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables();
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+            services
+                .AddEntityFrameworkNpgsql()
+                .AddDbContext<DatabaseContext>(
+                  options => options.UseNpgsql(Configuration[CONNECTION_STRING])
+                )
+                .AddMvcCore()
+                .AddJsonFormatters();
+            services.AddScoped<IProductService, ProductService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
-            app.UseIISPlatformHandler();
-
-            app.UseStaticFiles();
+            loggerFactory.AddConsole(LogLevel.Debug);
 
             app.UseMvc();
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args) => Microsoft.AspNet.Hosting.WebApplication.Run<Startup>(args);
     }
 }

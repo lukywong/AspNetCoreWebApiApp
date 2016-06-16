@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 using MyWebApiApp.Models;
 using MyWebApiApp.Services;
@@ -8,13 +8,19 @@ using MyWebApiApp.Services;
 namespace MyWebApiApp.Controllers
 {
     [Route("api/[controller]")]
-    public class ProductsController : Controller
+    public class ProductsController
     {
-        [HttpGet]
-        public IList<Product> Get()
+        public IProductService ProductService { get; set; }
+
+        public ProductsController(IProductService productService)
         {
-            var service = new ProductsService();
-            return service.GetProducts();
+            this.ProductService = productService;
+        }
+
+        [HttpGet]
+        public List<Product> Get()
+        {
+            return ProductService.GetProducts();
         }
     }
 }
