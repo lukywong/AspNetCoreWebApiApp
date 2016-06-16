@@ -4,8 +4,8 @@ A cross-platform demo of asp.net core web api.
 ## How to build
 Install the .NET Core from dot.net, then resolve dependencies and build
 ``` shell
-$ dnu restore
-$ dnu build
+$ dotnet restore
+$ dotnet build
 ```
 
 ## Setup database
