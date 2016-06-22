@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
@@ -9,11 +10,12 @@ namespace MyWebApiApp
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-                    .UseKestrel()
-                    .UseContentRoot(Directory.GetCurrentDirectory())
-                    .UseIISIntegration()
-                    .UseStartup<Startup>()
-                    .Build();
+                .UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? string.Empty)
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
 
             host.Run();
         }

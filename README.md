@@ -24,3 +24,12 @@ Application default listening at http://localhost:5000, i.e API can access by ht
 ``` shell
 $ dotnet run
 ```
+## Deployment
+Using docker to deploy, run below commands to publish the app
+``` shell
+dotnet publish -c Release
+```
+Build a docker image
+``` shell
+docker build -t ${REGISTRY:-dr:5000}/dotnetcore-demo .
+```

@@ -12,7 +12,7 @@ namespace MyWebApiApp
 {
     public class Startup
     {
-      public const string CONNECTION_STRING = "Data:DefaultConnectionString";
+        public const string CONNECTION_STRING = "Data:DefaultConnectionString";
 
         public IConfigurationRoot Configuration { get; private set; }
 

@@ -1,9 +1,21 @@
 postgres:
-  container_name: MyWebApiApp
+  container_name: MyWebApiApp_DB
   image: postgres:9.4.5
   ports:
-    - 5433:5432
+    - 5437:5432
   environment:
     POSTGRES_DB: oms
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: 123123
+  restart: always
+
+dotnetcore-demo:
+  container_name: MyWebApiApp_WEB
+  image: dr:5000/dotnetcore-demo
+  links:
+    - postgres:pg-host
+  ports:
+    - 5000:5000
+  environment:
+    ASPNETCORE_URLS: http://*:5000/
+  restart: always
