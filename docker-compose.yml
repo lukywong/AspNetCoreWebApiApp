@@ -2,7 +2,7 @@ postgres:
   container_name: MyWebApiApp_DB
   image: postgres:9.4.5
   ports:
-    - 5437:5432
+    - 5432:5432
   environment:
     POSTGRES_DB: oms
     POSTGRES_USER: postgres
@@ -12,6 +12,8 @@ postgres:
 dotnetcore-demo:
   container_name: MyWebApiApp_WEB
   image: dr:5000/dotnetcore-demo
+  volumes:
+    - ~/Workspace/Projects/MyWebApiApp/appsettings.json:/root/appsettings.json
   links:
     - postgres:pg-host
   ports:
