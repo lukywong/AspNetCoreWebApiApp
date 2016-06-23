@@ -10,7 +10,7 @@ namespace MyWebApiApp.Controllers
     [Route("api/[controller]")]
     public class ProductsController
     {
-        public IProductService ProductService { get; set; }
+        protected IProductService ProductService { get; private set; }
 
         public ProductsController(IProductService productService)
         {

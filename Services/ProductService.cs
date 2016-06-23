@@ -8,7 +8,7 @@ namespace MyWebApiApp.Services
 {
   public class ProductService : IProductService
   {
-      public DatabaseContext DbContext { get; set; }
+      protected DatabaseContext DbContext { get; private set; }
 
       public ProductService(DatabaseContext context)
       {
