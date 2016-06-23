@@ -34,3 +34,8 @@ start api service, it will start up a container MyWebApiApp_WEB
 ``` shell
 $ docker-compose up -d
 ```
+
+test the api
+``` shell
+$ curl http://YOUR_SERVER/api/products
+```
