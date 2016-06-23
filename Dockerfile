@@ -5,4 +5,4 @@ WORKDIR /root/
 
 EXPOSE 5000/tcp
 
-ENTRYPOINT dotnet MyWebApiApp.dll
+ENTRYPOINT dotnet AspNetCoreWebApiApp.dll
