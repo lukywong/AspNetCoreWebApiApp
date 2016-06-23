@@ -8,7 +8,7 @@ using MyWebApiApp.Services;
 namespace MyWebApiApp.Controllers
 {
     [Route("api/[controller]")]
-    public class ProductsController
+    public class ProductsController : Controller
     {
         private readonly IProductService _productService;
 
