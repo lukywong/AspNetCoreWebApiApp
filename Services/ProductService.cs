@@ -8,16 +8,16 @@ namespace MyWebApiApp.Services
 {
   public class ProductService : IProductService
   {
-      protected DatabaseContext DbContext { get; private set; }
+      private readonly DatabaseContext _dbContext;
 
       public ProductService(DatabaseContext context)
       {
-          this.DbContext = context;
+          this._dbContext = context;
       }
 
       public List<Product> GetProducts()
       {
-          return DbContext.Products.Where(d => d.Id < 4).ToList();
+          return this._dbContext.Products.Where(d => d.Id < 4).ToList();
       }
   }
 }
