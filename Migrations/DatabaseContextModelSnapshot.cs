@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-using MyWebApiApp.Domains;
+using AspNetCoreWebApiApp.Domains;
 
-namespace MyWebApiApp.Migrations
+namespace AspNetCoreWebApiApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot

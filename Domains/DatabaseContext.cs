@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
-using MyWebApiApp.Models;
+using AspNetCoreWebApiApp.Models;
 
-namespace MyWebApiApp.Domains
+namespace AspNetCoreWebApiApp.Domains
 {
     public class DatabaseContext : DbContext
     {

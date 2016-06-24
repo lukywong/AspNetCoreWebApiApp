@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using MyWebApiApp.Models;
-using MyWebApiApp.Domains;
+using AspNetCoreWebApiApp.Models;
+using AspNetCoreWebApiApp.Domains;
 
-namespace MyWebApiApp.Services
+namespace AspNetCoreWebApiApp.Services
 {
   public class ProductService : IProductService
   {

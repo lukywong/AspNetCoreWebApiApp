@@ -1,7 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MyWebApiApp.Migrations
+namespace AspNetCoreWebApiApp.Migrations
 {
     public partial class products001 : Migration
     {

@@ -5,10 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-using MyWebApiApp.Domains;
-using MyWebApiApp.Services;
+using AspNetCoreWebApiApp.Domains;
+using AspNetCoreWebApiApp.Services;
 
-namespace MyWebApiApp
+namespace AspNetCoreWebApiApp
 {
     public class Startup
     {
@@ -21,7 +21,9 @@ namespace MyWebApiApp
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .AddJsonFile("config/appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"config/appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
@@ -39,7 +41,7 @@ namespace MyWebApiApp
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(LogLevel.Debug);
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
             app.UseMvc();
         }

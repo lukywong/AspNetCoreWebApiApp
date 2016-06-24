@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
 
-using MyWebApiApp.Models;
-using MyWebApiApp.Services;
+using AspNetCoreWebApiApp.Models;
+using AspNetCoreWebApiApp.Services;
 
-namespace MyWebApiApp.Controllers
+namespace AspNetCoreWebApiApp.Controllers
 {
     [Route("api/[controller]")]
     public class ProductsController : Controller

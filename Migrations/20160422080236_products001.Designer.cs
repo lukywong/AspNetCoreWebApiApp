@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-using MyWebApiApp.Domains;
+using AspNetCoreWebApiApp.Domains;
 
-namespace MyWebApiApp.Migrations
+namespace AspNetCoreWebApiApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     [Migration("20160422080236_products001")]

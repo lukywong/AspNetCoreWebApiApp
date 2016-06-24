@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using MyWebApiApp.Models;
+using AspNetCoreWebApiApp.Models;
 
-namespace MyWebApiApp.Services
+namespace AspNetCoreWebApiApp.Services
 {
     public interface IProductService
     {

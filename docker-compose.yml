@@ -1,5 +1,5 @@
 postgres:
-  container_name: MyWebApiApp_DB
+  container_name: AspNetCoreWebApiApp_DB
   image: postgres:9.4.5
   ports:
     - 5432:5432
@@ -10,14 +10,15 @@ postgres:
   restart: always
 
 dotnetcore-demo:
-  container_name: MyWebApiApp_WEB
+  container_name: AspNetCoreWebApiApp_WEB
   image: dr:5000/dotnetcore-demo
   volumes:
-    - ~/Workspace/Projects/MyWebApiApp/appsettings.json:/root/appsettings.json
+    - ~/Workspace/Projects/AspNetCoreWebApiApp/Config:/root/Config
   links:
     - postgres:pg-host
   ports:
     - 5000:5000
   environment:
     ASPNETCORE_URLS: http://*:5000/
+    ASPNETCORE_ENVIRONMENT: Production
   restart: always

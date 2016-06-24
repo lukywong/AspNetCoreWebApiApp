@@ -1,6 +1,6 @@
 using System;
 
-namespace MyWebApiApp.Models
+namespace AspNetCoreWebApiApp.Models
 {
     public class Product
     {
