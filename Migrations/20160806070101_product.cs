@@ -1,18 +1,19 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AspNetCoreWebApiApp.Migrations
 {
-    public partial class products001 : Migration
+    public partial class product : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:Serial", true),
+                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -20,13 +21,14 @@ namespace AspNetCoreWebApiApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("Product");
+            migrationBuilder.DropTable(
+                name: "Products");
         }
     }
 }
