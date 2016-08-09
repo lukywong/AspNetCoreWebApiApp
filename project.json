@@ -37,9 +37,6 @@
       "version": "1.0.0-preview2-final"
     }
   },
-  "scripts": {
-    "postpublish": "docker build -t dr:5000/dotnetcore-demo ."
-  },
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [

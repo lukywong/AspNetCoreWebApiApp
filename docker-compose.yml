@@ -13,7 +13,7 @@ dotnetcore-demo:
   container_name: AspNetCoreWebApiApp_WEB
   image: dr:5000/dotnetcore-demo
   volumes:
-    - ~/Workspace/Projects/AspNetCoreWebApiApp/Config:/root/Config
+    - ./Config:/app/Config
   links:
     - postgres:pg-host
   ports:

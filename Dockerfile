@@ -1,7 +1,7 @@
-FROM microsoft/dotnet:latest
+FROM microsoft/dotnet
 
-COPY bin/Release/netcoreapp1.0/publish/ /root/
-WORKDIR /root/
+COPY /app /app
+WORKDIR /app
 
 EXPOSE 5000/tcp
 
