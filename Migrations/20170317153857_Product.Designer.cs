@@ -8,13 +8,14 @@ using AspNetCoreWebApiApp.Domains;
 namespace AspNetCoreWebApiApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20160806070101_product")]
-    partial class product
+    [Migration("20170317153857_Product")]
+    partial class Product
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
+                .HasAnnotation("ProductVersion", "1.1.1");
 
             modelBuilder.Entity("AspNetCoreWebApiApp.Models.Product", b =>
                 {

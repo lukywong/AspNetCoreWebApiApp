@@ -1,3 +1,6 @@
+﻿using AspNetCoreWebApiApp.Domains;
+using AspNetCoreWebApiApp.Services;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -5,30 +8,28 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-using AspNetCoreWebApiApp.Domains;
-using AspNetCoreWebApiApp.Services;
-
 namespace AspNetCoreWebApiApp
 {
     public class Startup
-    {
-        public const string CONNECTION_STRING = "Data:DefaultConnectionString";
-
-        public IConfigurationRoot Configuration { get; private set; }
+    { 
+        public const string CONNECTION_STRING = "Data:DefaultConnectionString"; 
 
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("config/appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"config/appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
+        public IConfigurationRoot Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
             services
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<DatabaseContext>(
@@ -36,12 +37,15 @@ namespace AspNetCoreWebApiApp
                 )
                 .AddMvcCore()
                 .AddJsonFormatters();
+            
             services.AddScoped<IProductService, ProductService>();
         }
 
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
             app.UseMvc();
         }

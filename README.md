@@ -30,7 +30,7 @@ Using docker to deploy, run below commands to resolve dependencies and publish t
 $ dotnet restore
 $ dotnet build -c release
 $ dotnet publish -c release -o app
-$ docker build docker build -t dr:5000/dotnetcore-demo .
+$ docker build -t dr:5000/dotnetcore-demo .
 ```
 start api service, it will start up a container AspNetCoreWebApiApp_WEB
 ``` shell

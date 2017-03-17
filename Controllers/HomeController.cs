@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreWebApiApp.Controllers
 {
     [Route("/")]
-    public class IndexController : Controller
+    public class HomeController : Controller
     {
         [HttpGet]
         public object Get()
